@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row mt-1">
+        <div class="col-md-12 text-right">
+            <button class="btn btn-info" (click)="logout()">Logout</button>
+        </div>
+
+    </div>
+    <form class="p-5" class="student-form" [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>First Name</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Last Name</label>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="First Name" formControlName='firstName'>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Last Name" formControlName='lastName'>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Marathi</label>
+                </div>
+                <div class="col-md-2">
+                    <label>English</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Hindi</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Math</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Science</label>
+                </div>
+
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Marathi" formControlName='marathi'>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="English" formControlName='english'>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Hindi" formControlName='hindi'>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Math" formControlName='math'>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Science" formControlName='science'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Submit</button> &nbsp;
+                    <button type="submit" class="btn btn-danger" *ngIf="isEdit" (click)='resetAll()'>Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Marathi</th>
+                <th>English</th>
+                <th>Hindi</th>
+                <th>Math</th>
+                <th>Science</th>
+                <th>Percentage</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of students">
+                <td>{{student.firstName}}&nbsp;{{student.lastName}}</td>
+                <td>{{student.marathi}}</td>
+                <td>{{student.english}}</td>
+                <td>{{student.hindi}}</td>
+                <td>{{student.math}}</td>
+                <td>{{student.science}}</td>
+                <td>
+                    {{calculatePercentage(student.marathi,student.english,student.hindi,student.math,student.science) }}
+                    %
+                </td>
+                <td>
+                    <button class="btn btn-primary" type="button" (click)="editStudent(student)">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

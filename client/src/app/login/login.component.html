@@ -1,0 +1,17 @@
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3>Login</h3>
+        </div>
+    </div>
+    <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input type="text"  placeholder="Enter Email ID" class="form-control" formControlName="username">
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" class="form-control" formControlName="password">
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </div>
+      </form>
+</div>
